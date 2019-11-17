@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+
+<div th:replace="~{test/common::cssStyle}"></div>
+<div th:insert="~{test/common::#javaScript}"></div>
+
+<body>
+	asdadsasdads
+	<div th:text="${requestkey}">123132</div>
+	<div th:text="${session.sessionKey}"></div>
+	<div th:text="${application.applicationKey}">3333</div>
+	<hr>
+	<div th:each="admin:${session.sessionKey}" th:text="${admin}"></div><hr>
+	<span th:each="admin:${session.sessionKey}">[[${admin}]]</span>
+	<hr>
+	<div th:if="${requestkey}==null" >[[${requestkey}]]</div>
+	<div th:if="${requestkey}!=null" >[[${requestkey}]]</div>
+	<hr>
+	
+	
+	<table class="table">
+		<tr>
+			<th>序号</th>
+			<th>用户名</th>
+			<th>密码</th>
+		</tr>
+		<tr th:each="admin,status:${session.sessionKey}">
+			<!-- <td>[[${admin.id}]]</td>
+			<td>[[${admin.loginacct}]]</td>
+			<td>[[${admin.userpswd}]]</td> -->
+			<td th:text="${status.count}">无</td>
+			<td th:text="${admin.loginacct}">无</td>
+<!-- 			<td  th:text="${admin.userpswd}==null?_:${admin.userpswd}">无</td> -->
+			<td th:if="${admin.userpswd}==null" >无</td>
+			<td th:if="${admin.userpswd}!=null" th:text="${admin.userpswd}">无</td>
+		</tr>
+	</table>
+	<hr>
+	<div th:utext="'<span>用户名是</span>'+${requestkey}"></div>
+	<div th:text="100%2==0?_:${requestkey}">100</div>
+	
+</body>
+</html>

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: scw-ui
+  redis:
+    port: 6379
+    host: 192.168.139.130
+  thymeleaf:
+    cache: false
+  session:
+    timeout:
+      1800
+    store-type: redis
+server:
+  port: 10000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
